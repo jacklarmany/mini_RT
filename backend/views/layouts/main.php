@@ -98,9 +98,7 @@ $this->title = Yii::t('app', 'Mini RT');
                                     <button title="<?= Yii::t('app', 'Refresh') ?>" id="crefresh" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
                                         <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/refresh-25.png">
                                     </button>
-                                    <button title="<?= Yii::t('app', 'Back') ?>" id="cback" type="button" class="btn btn-sm bg-light " aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/back-25.png">
-                                    </button>
+                             
                                     <button title="<?= Yii::t('app', 'Trush bin') ?>" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
                                         <img src="<?= Yii::$app->request->baseUrl ?>/icon/delete-25.png">
                                     </button>

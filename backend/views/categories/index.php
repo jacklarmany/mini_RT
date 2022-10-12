@@ -16,7 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="col-md-10 mx-auto">
     <div class="card bg-white rounded shadow border">
         <div class="card-header">
-            <h4><?= Html::encode($this->title) ?></h4>
+            <div class="row">
+                <div class="col-md-6 pl-2 m-0"><h4><?= Html::encode($this->title) ?></h4></div>
+                <div class="col-md-6 pr-2 m-0 text-right">
+                    <a href="index.php?r=site/index"><span><i class="text-danger fa fa-times-circle"></i></i></span></a>
+                </div>
+            </div>
         </div>
         <div class="card-body bg-white">
             <p class="text-right">

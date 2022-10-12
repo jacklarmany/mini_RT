@@ -92,6 +92,9 @@ $this->title = Yii::t('app', 'Mini RT');
                         <div class="row">
                             <div class="col-md-12 border shadow-sm">
                                 <div class="btn-group rounded">
+                                    <button title="<?= Yii::t('app', 'Info') ?>" id="info" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
+                                        <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/info-25.png">
+                                    </button>
                                     <button title="<?= Yii::t('app', 'Refresh') ?>" id="crefresh" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
                                         <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/refresh-25.png">
                                     </button>

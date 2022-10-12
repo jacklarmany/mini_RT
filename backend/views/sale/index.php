@@ -14,7 +14,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Sales');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sale-index mx-auto shadow col-md-8 p-5 bg-white rounded border">
+<div class="sale-index mx-auto shadow col-md-10 p-5 bg-white rounded border">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

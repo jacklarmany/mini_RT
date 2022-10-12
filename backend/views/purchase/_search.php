@@ -8,7 +8,9 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="purchase-search pr-5 pl-5 border-bottom">
+<div class="purchase-search pr-5 pl-5">
+    <h5><?= Yii::t('app', 'Search') ?></h5>
+    <hr>
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',

@@ -98,7 +98,6 @@ $this->title = Yii::t('app', 'Mini RT');
                                     <button title="<?= Yii::t('app', 'Refresh') ?>" id="crefresh" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
                                         <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/refresh-25.png">
                                     </button>
-                             
                                     <button title="<?= Yii::t('app', 'Trush bin') ?>" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
                                         <img src="<?= Yii::$app->request->baseUrl ?>/icon/delete-25.png">
                                     </button>
@@ -108,27 +107,9 @@ $this->title = Yii::t('app', 'Mini RT');
                                     <button title="<?= Yii::t('app', 'Dashboard') ?>" id="index" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
                                         <img src="<?= Yii::$app->request->baseUrl ?>/icons/dashboard-25.png">
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm bg-light rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/report-25.png" width="25">
+                                    <button type="button" class="btn btn-sm bg-light rounded-0" aria-haspopup="true" aria-expanded="false">
+                                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/setting-25.png" width="25">
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-right border-0 shadow rounded">
-                                        <a class="dropdown-item" href="<?= yii\helpers\Url::toRoute('sale-detail/income') ?>">
-                                            <img src="<?= Yii::$app->request->baseUrl ?>/icons/report-24.png"> <?= Yii::t('app', 'Report Income') ?>
-                                        </a>
-                                        <a class="dropdown-item" href="<?= yii\helpers\Url::toRoute('sale/index') ?>">
-                                            <img src="<?= Yii::$app->request->baseUrl ?>/icons/report-24.png"> <?= Yii::t('app', 'Report sale') ?>
-                                        </a>
-                                        </a>
-                                        <a class="dropdown-item" href="<?= yii\helpers\Url::toRoute('sale/debt') ?>">
-                                            <img src="<?= Yii::$app->request->baseUrl ?>/icons/report-24.png"> <?= Yii::t('app', 'Report Dept') ?>
-                                        </a>
-                                        <hr class="mt-2 mb-2">
-                                        <a class="dropdown-item" href="<?= yii\helpers\Url::toRoute('sale/bill') ?>">
-                                            <img src="<?= Yii::$app->request->baseUrl ?>/icons/bill-24.png"> <?= Yii::t('app', 'Bills') ?>
-                                        </a>
-                                    </div>
                                 </div>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm bg-light rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

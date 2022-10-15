@@ -1,73 +1,49 @@
 <style>
-    .btn5 {
-        color: #fff;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 45px;
-        position: relative;
-        text-decoration: none;
-        text-transform: uppercase;
-        width: 100%;
-        background-color: #fff;
-
-        @media(min-width: 600px) {
-            margin: 0 1em 2em;
-        }
-
+    .jhover {
+        background-color: #f1f2f6;
     }
 
-    .btn-5 {
-        /* outline: 2px solid; */
-        outline-color: rgba(255, 255, 255, .5);
-        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-    }
-
-    .btn-5:hover {
-        box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
-        outline-color: rgba(255, 255, 255, 0);
-        outline-offset: 0px;
-        text-shadow: 1px 3px 5px blue;
-        background-color: #E6E6E6;
+    .jhover:hover {
+        background-color: #f8f9fa !important;
+        box-shadow: 2px 6px 8px #ccc !important;
     }
 </style>
-
-<div class="container mt-5 border-0 shadow-sm border" style="width:65%;">
-    <div class="row border-0">
-        <div class="col-md-4 pt-5 pb-5 btn-5 btn5 shadow-sm">
-            <div class="rounded">
-                <a href="<?= \yii\helpers\Url::toRoute('/categories/index') ?>" style="text-decoration: none;">
+<div class="container mt-5 p-4 border-0">
+    <div class="row"> 
+        <div class="col-md-4 p-2">
+            <div class="rounded jhover shadow-sm">
+                <a href="<?= \yii\helpers\Url::toRoute('/categories/create') ?>" style="text-decoration: none;">
                     <div class="card p-3 text-center">
                         <!-- <i class="fa fa-3x fa-bottle-water"></i> -->
                         <p><img src="<?= \Yii::$app->request->baseUrl ?>/icons/dashboard/category-96.png" alt="" width="60"></p>
-                        <div class="content mt-2" style="font-family: saysettha ot; font-weight:bold">
-                            <h5><?= Yii::t('app', 'Categories') ?></h5>
+                        <div class="mt-2" style="font-family: saysettha ot; font-weight:bold">
+                            <h6><?= Yii::t('app', 'Category') ?></h6>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
-        <div class="col-md-4 pt-5 pb-5 btn-5 btn5">
-            <div class="rounded">
-                <a href="<?= \yii\helpers\Url::toRoute('/menu/index') ?>" style="text-decoration: none;">
+        <div class="col-md-4 p-2">
+            <div class="rounded jhover shadow-sm">
+                <a href="<?= \yii\helpers\Url::toRoute('/menu/create') ?>" style="text-decoration: none;">
                     <div class="card p-3 text-center">
                         <!-- <i class="fa-3x fa fa-jug-detergent"></i> -->
                         <p><img src="<?= \Yii::$app->request->baseUrl ?>/icons/dashboard/menu-96.png" alt="" width="60"></p>
-                        <div class="content mt-2" style="font-family: saysettha ot; font-weight:bold">
-                            <h5><?= Yii::t('app', 'Menu') ?></h5>
+                        <div class=" mt-2" style="font-family: saysettha ot; font-weight:bold">
+                            <h6><?= Yii::t('app', 'Menu') ?></h6>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
-        <div class="col-md-4 pt-5 pb-5 btn-5 btn5">
-            <div class="rounded">
+        <div class="col-md-4 p-2">
+            <div class="rounded jhover shadow-sm">
                 <a href="<?= \yii\helpers\Url::toRoute('/menu/sale-product') ?>" style="text-decoration: none;">
                     <div class="card p-3 text-center">
                         <!-- <i class="fa fa-shopping-cart text-danger fa-3x"></i> -->
                         <p><img src="<?= \Yii::$app->request->baseUrl ?>/icons/dashboard/sale-96.png" alt="" width="60"></p>
-                        <div class="content mt-2" style="font-family: saysettha ot; font-weight:bold">
-                            <h5><?= Yii::t('app', 'Sale') ?></h5>
+                        <div class=" mt-2" style="font-family: saysettha ot; font-weight:bold">
+                            <h6><?= Yii::t('app', 'Sale') ?></h6>
                         </div>
                     </div>
                 </a>
@@ -75,41 +51,41 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 pt-5 pb-5 btn-5 btn5">
-            <div class="rounded">
-                <a href="<?= \yii\helpers\Url::toRoute('/sale/index') ?>" style="text-decoration: none;">
+        <div class="col-md-4 p-2">
+            <div class="rounded jhover shadow-sm">
+                <a href="<?= \yii\helpers\Url::toRoute('/user/create') ?>" style="text-decoration: none;">
                     <div class="card p-3 text-center">
                         <!-- <i class="fa fa-people-roof fa-3x"></i> -->
-                        <p><img src="<?= \Yii::$app->request->baseUrl ?>/icons/dashboard/bill-96.png" alt="" width="60"></p>
-                        <div class="content mt-2" style="font-family: saysettha ot; font-weight:bold">
-                            <h5><?= Yii::t('app', 'Bills') ?></h5>
+                        <p><img src="<?= \Yii::$app->request->baseUrl ?>/icons/dashboard/add-user-96.png" alt="" width="60"></p>
+                        <div class=" mt-2" style="font-family: saysettha ot; font-weight:bold">
+                            <h6><?= Yii::t('app', 'User') ?></h6>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
-        <div class="col-md-4 pt-5 pb-5 btn-5 btn5">
-            <div class="rounded">
-                <a href="<?= \yii\helpers\Url::toRoute('/purchase/index') ?>" style="text-decoration: none;">
+        <div class="col-md-4 p-2">
+            <div class="rounded jhover shadow-sm">
+                <a href="<?= \yii\helpers\Url::toRoute('/purchase/create') ?>" style="text-decoration: none;">
                     <div class="card p-3 text-center">
                         <!-- <i class="fa-solid fa fa-users-line fa-3x"></i> -->
                         <p><img src="<?= \Yii::$app->request->baseUrl ?>/icons/dashboard/purchase-96.png" alt="" width="60"></p>
-                        <div class="content mt-2" style="font-family: saysettha ot; font-weight:bold">
-                            <h5><?= Yii::t('app', 'Purchase') ?></h5>
+                        <div class=" mt-2" style="font-family: saysettha ot; font-weight:bold">
+                            <h6><?= Yii::t('app', 'Purchase') ?></h6>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
         <!-- 777 -->
-        <div class="col-md-4 pt-5 pb-5 btn-5 btn5">
-            <div class="rounded">
-                <a href="<?= \yii\helpers\Url::toRoute(['/sale/index', 'benifit' => 'true']) ?>" style="text-decoration: none;">
+        <div class="col-md-4 p-2">
+            <div class="rounded jhover shadow-sm">
+                <a href="<?= \yii\helpers\Url::toRoute(['/tables/create']) ?>" style="text-decoration: none;">
                     <div class="card p-3 text-center">
                         <!-- <i class="fa fa-money fa-3x"></i> -->
-                        <p><img src="<?= \Yii::$app->request->baseUrl ?>/icons/dashboard/benefit-96.png" alt="" width="60"></p>
-                        <div class="content mt-2" style="font-family: saysettha ot; font-weight:bold">
-                            <h5><?= Yii::t('app', 'Benitfit') ?></h5>
+                        <p><img src="<?= \Yii::$app->request->baseUrl ?>/icons/dashboard/table-96.png" alt="" width="60"></p>
+                        <div class=" mt-2" style="font-family: saysettha ot; font-weight:bold">
+                            <h6><?= Yii::t('app', 'Table') ?></h6>
                         </div>
                     </div>
                 </a>

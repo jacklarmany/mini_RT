@@ -6,18 +6,18 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PurchaseDetailSearch */
+/* @var $searchModel backend\models\RestaurantSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Purchase Details');
+$this->title = 'Restaurants';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="purchase-detail-index">
+<div class="restaurant-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Purchase Detail'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Restaurant', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,14 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'qty',
-            'price',
-            'amount',
-            'purchase_id',
+            // 'id',
+            'name',
+            'logo',
+            'contact',
+            'address:ntext',
+            //'restaurant_owner',
+            //'user_id',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, PurchaseDetail $model, $key, $index, $column) {
+                'urlCreator' => function ($action, \backend\models\Restaurant $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

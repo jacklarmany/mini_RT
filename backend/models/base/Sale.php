@@ -46,7 +46,6 @@ abstract class Sale extends \yii\db\ActiveRecord
             [['table_id', 'menu_id', 'qty', 'user_id', 'bill_no'], 'integer'],
             [['price', 'amount'], 'number'],
             [['date', 'time'], 'safe'],
-            [['time'], 'required'],
             [['table_id'], 'exist', 'skipOnError' => true, 'targetClass' => \backend\models\Tables::className(), 'targetAttribute' => ['table_id' => 'id']],
             [['menu_id'], 'exist', 'skipOnError' => true, 'targetClass' => \backend\models\Menu::className(), 'targetAttribute' => ['menu_id' => 'id']]
         ];

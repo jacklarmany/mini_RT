@@ -47,7 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
         padding: 5px;
     }
 
-    #w4-error-0 {
+    #w4-error-0,
+    #w5-error-0 {
         z-index: 4000;
     }
 
@@ -274,16 +275,7 @@ $this->params['breadcrumbs'][] = $this->title;
     }
 </style>
 
-<div class="all" id="show" style="border: 2px solid #999; margin-top:0; border-radius:10px;">
-    <!-- <p class="text-right">
-        <a href="#" class="btn btn-outline-info rounded btn-sm shadow-sm" data-toggle="modal" data-target="#exampleModalCenter">
-            <img src="<?= Yii::$app->request->baseUrl ?>/icon/column-25.png" class="img-fluid" width="17">
-        </a>
-        <a href="index.php?r=site" class="btn btn-outline-danger rounded btn-sm shadow-sm">
-            <img src="<?= Yii::$app->request->baseUrl ?>/icons/close-25.png" class="img-fluid" width="17">
-        </a>
-    </p> -->
-
+<div class="all" style="border: 2px solid #999; margin-top:0; border-radius:0px;">
     <p class="text-right m-0 mb-2">
         <b id="refresh" title="<?= Yii::t('app', 'Refresh') ?>" class="text-right btn-outline-info border mb-1 mr-1 badge badge-default circle mr-0" style="cursor:pointer"><i class="fa fa-refresh"></i></b>
         <b id="ctogle" title="<?= Yii::t('app', 'Hid') ?>" class="text-right btn-outline-info border mb-1 mr-1 badge badge-default circle mr-0" style="cursor:pointer"><i class="fa fa-minus"></i></b>
@@ -295,30 +287,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="scroller-table p-3 text-center text-danger border shadow-sm">
                     <?php
                     $table = \backend\models\Tables::find()->where(['status' => 0])->all();
-                    if(count($table)>0){
-                    foreach ($table as $tableD) {
-                        if ($tableD->id == Yii::$app->session->get('table_id')) {
+                    if (count($table) > 0) {
+                        foreach ($table as $tableD) {
+                            if ($tableD->id == Yii::$app->session->get('table_id')) {
                     ?>
-                            <div class="card-body border bg-info shadow-sm rounded btn btn-outline-primary text-white btn-block">
-                                <i href="#" class="text-transparent">
+                                <div class="card-body border bg-info shadow-sm rounded btn btn-outline-primary text-white btn-block">
+                                    <i href="#" class="text-transparent">
+                                        <h5 class="card-title font-weight-bolder"><?= $tableD['name'] ?></h5>
+                                        <p class="card-text">ມີ <?= $tableD['sheet'] ?> ບ່ອນນັ່ງ</p>
+                                    </i>
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="index.php?r=menu/select-table&id=<?= $tableD['id'] ?>" class="shadow-sm card-body btn btn-outline-primary btn-block" style="text-decoration:none">
                                     <h5 class="card-title font-weight-bolder"><?= $tableD['name'] ?></h5>
                                     <p class="card-text">ມີ <?= $tableD['sheet'] ?> ບ່ອນນັ່ງ</p>
-                                </i>
-                            </div>
-                        <?php
-                        } else {
-                        ?>
-                            <a href="index.php?r=menu/select-table&id=<?= $tableD['id'] ?>" class="shadow-sm card-body btn btn-outline-primary btn-block" style="text-decoration:none">
-                                <h5 class="card-title font-weight-bolder"><?= $tableD['name'] ?></h5>
-                                <p class="card-text">ມີ <?= $tableD['sheet'] ?> ບ່ອນນັ່ງ</p>
-                            </a>
+                                </a>
                     <?php
+                            }
                         }
+                    } else {
+                        echo "<h3><i class='fa fa-xmark-circle'></i></h3>";
+                        echo "<h3>ບໍ່ມີໂຕະວ່າງ</h3>";
                     }
-                } else{
-                    echo "<h3><i class='fa fa-xmark-circle'></i></h3>";
-                    echo "<h3>ບໍ່ມີໂຕະວ່າງ</h3>";
-                }
                     ?>
                 </div>
             </div>
@@ -394,7 +386,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </td>
                         <td style="width: 40%; vertical-align:top; background-color:#fcfcfc" class="p-3 shadow rounded">
                             <a href="#" class="btn btn-sm btn-outline-primary" title="Check bill now" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a>
-                            <a href="index.php?r=menu/set-waiting&waiting=true" class="btn btn-sm btn-warning" title="Check bill later"><i class="fa fa-shopping-cart"></i></a>
+                            <a href="index.php?r=menu/set-waiting&waiting=true" class="btn btn-sm btn-warning" title="Check bill later"><i class="fa fa-shopping-cart"></i><?=Yii::t('app','Confirm order')?></a>
                             <?php
                             if (Yii::$app->session->get('table_id')) {
                                 $tablename = \backend\models\Tables::find()->where(['id' => Yii::$app->session->get('table_id')])->one();
@@ -406,14 +398,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             <hr class="mt-1">
                             <div class="scroller-bill">
                                 <table style="width:100%;" class="result">
-                                    <tr>
+                                    <!-- <tr>
                                         <th class="text-center">#</th>
                                         <th class="text-left">ຊື່ເມນູ</th>
                                         <th class="text-center">ຈໍານວນ</th>
                                         <th class="text-center">ລາຄາ</th>
                                         <th class="text-center">ລວມເປັນເງິນ</th>
-                                        <th class="text-center">ແອັກເຊິນ</th>
-                                    </tr>
+                                        <th class="text-center"></th>
+                                    </tr> -->
                                     <?php
                                     $prepareMenu = \backend\models\PrepareMenu::find()
                                         ->where(['checkbill' => 'No'])
@@ -510,7 +502,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php
                                     }
                                 } else {
-                                    echo Yii::t('app', 'More ordering...');
+                                    echo "<span class='text-danger'>".Yii::t('app', 'More ordering...') ."</span>";
                                 }
                                 ?>
                                 <tr>
@@ -569,6 +561,7 @@ $(document).ready(function () {
 
     }); 
     $("#w4-error-0").fadeOut(6000);
+    $("#w5-error-0").fadeOut(6000);
 });
  
 JS;

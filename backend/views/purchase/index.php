@@ -12,13 +12,16 @@ use yii\grid\GridView;
 $this->title = 'Purchases';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<style>
+    th {
+        padding: 10px;
+    }
+</style>
 <div class="project-search pt-3 pb-3 pl-5 pr-5 shadow-sm rounded mb-3">
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 </div>
-
-
-<div class="col-md-10 mx-auto">
-    <div class="card bg-white rounded shadow border">
+<div class="col-md-12 mx-auto">
+    <div class="rounded bg-white" style="border: 1px solid #ccc;">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6 pl-2 m-0">

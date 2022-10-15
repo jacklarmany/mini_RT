@@ -2,16 +2,16 @@
 
 namespace backend\controllers;
 
-use backend\models\PurchaseDetail;
-use backend\models\PurchaseDetailSearch;
+use backend\models\Restaurant;
+use backend\models\RestaurantSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PurchaseDetailController implements the CRUD actions for PurchaseDetail model.
+ * RestaurantController implements the CRUD actions for Restaurant model.
  */
-class PurchaseDetailController extends Controller
+class RestaurantController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class PurchaseDetailController extends Controller
     }
 
     /**
-     * Lists all PurchaseDetail models.
+     * Lists all Restaurant models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new PurchaseDetailSearch();
+        $searchModel = new RestaurantSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class PurchaseDetailController extends Controller
     }
 
     /**
-     * Displays a single PurchaseDetail model.
+     * Displays a single Restaurant model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,17 +61,19 @@ class PurchaseDetailController extends Controller
     }
 
     /**
-     * Creates a new PurchaseDetail model.
+     * Creates a new Restaurant model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new PurchaseDetail();
+        $model = new Restaurant();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->user_id = \Yii::$app->user->id;
+                $model->save();
+                return $this->redirect(['index']);
             }
         } else {
             $model->loadDefaultValues();
@@ -83,7 +85,7 @@ class PurchaseDetailController extends Controller
     }
 
     /**
-     * Updates an existing PurchaseDetail model.
+     * Updates an existing Restaurant model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +105,7 @@ class PurchaseDetailController extends Controller
     }
 
     /**
-     * Deletes an existing PurchaseDetail model.
+     * Deletes an existing Restaurant model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,18 +119,18 @@ class PurchaseDetailController extends Controller
     }
 
     /**
-     * Finds the PurchaseDetail model based on its primary key value.
+     * Finds the Restaurant model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return PurchaseDetail the loaded model
+     * @return Restaurant the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PurchaseDetail::findOne(['id' => $id])) !== null) {
+        if (($model = Restaurant::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

@@ -13,8 +13,8 @@ $this->title = Yii::t('app', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="col-md-10 mx-auto">
-    <div class="card bg-white rounded shadow border">
+<div class="col-md-12 mx-auto">
+    <div class="rounded bg-white" style="border: 1px solid #ccc;">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6 pl-2 m-0"><h4><?= Html::encode($this->title) ?></h4></div>
@@ -40,7 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'tableOptions' => ['class' => 'shadow-sm bg-white table-bordered table-hover', 'style' => 'width:100%'],
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'name',
+                    [
+                        'attribute' => Yii::t('app', 'Name'),
+                        'attribute' => 'name',
+                        'filter' => \yii\helpers\ArrayHelper::map(\backend\models\Categories::find()->asArray()->all(), 'name', 'name'),
+                        'value' => function ($data) {
+                            return $data->name;
+                        }
+                    ],
                     // 'user_id',
                     [
                         'class' => ActionColumn::className(),

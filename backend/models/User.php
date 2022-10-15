@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
-use \app\models\base\User as BaseUser;
+use \backend\models\base\User as BaseUser;
 use yii\helpers\ArrayHelper;
 
 /**

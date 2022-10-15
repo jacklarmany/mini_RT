@@ -15,15 +15,44 @@ $(document).ready(function(){
         window.location="index.php?r=product/backup";
     });
     $("#index").click(function(){
-        window.location="index.php?r=site/index";
+        window.location="index.php?r=site/";
     });
     $("#manage-website").click(function(){
         window.location="index.php?r=site/manage-website";
     });
     $("#trashbin").click(function(){
-        window.location="index.php?r=trash-bin/index";
+        window.location="index.php?r=trash-bin/";
+    });
+    $("#tables").click(function(){
+        window.location="index.php?r=tables/";
+    });
+    $("#users").click(function(){
+        window.location="index.php?r=user/";
+    }); 
+    $("#restaurant").click(function(){
+        window.location="index.php?r=restaurant/";
+    });
+    $("#category").click(function(){
+        window.location="index.php?r=categories/";
+    });
+    $("#menu").click(function(){
+        window.location="index.php?r=menu/";
+    });
+    $("#purchase").click(function(){
+        window.location="index.php?r=purchase/";
     });
     
+    $("#benifit").click(function(){
+        window.location="index.php?r=sale/index&benifit=true";
+    });
+    
+    $("#bill").click(function(){
+        window.location="index.php?r=sale/";
+    });
+    
+    $("#setting").click(function(){
+        window.location="index.php?r=site/setting";
+    }); 
     $("#crefresh").click(function(){
         document.location.reload();
     });
@@ -51,135 +80,211 @@ $this->title = Yii::t('app', 'Mini RT');
     <link rel="icon" type="image/x-icon" href="<?= Yii::$app->request->baseUrl ?>/icons/logo-48.png ?>">
     <?php $this->head() ?>
     <style>
-        .btn-outline-danger {
-            background-color: #fff;
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 203px;
+            background-color: #E6E6E6;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            border: 2px outset #f1f1f1;
+            border-top-right-radius: 5px;
+            /* border-bottom-right-radius: 5px; */
         }
 
-        .btn-outline-success {
-            background-color: #fff;
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
         }
 
-        .btn-outline-info {
-            background-color: #fff;
+        .sidebar a.active {
+            background-color: #04AA6D;
+            color: white;
         }
 
-        .btn-outline-secondary {
-            background-color: #fff;
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
         }
 
-        .btn-outline-warning {
-            background-color: #fff;
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
         }
 
-        .btn-outline-primary {
-            background-color: #fff;
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                float: left;
+            }
+
+            div.content {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
         }
     </style>
 </head>
 
-<body class="h-100" style="background-color:#E6E6E6 !important;">
+<body class="h-100" style="background-color: #e9ecef !important;" id="show">
     <?php $this->beginBody() ?>
     <header>
-        <nav id="w2" class="navbar bg-light navbar-expand-md fixed-top m-0 navbar pt-0 pb-0 pr-2 pl-2" style="background-color:#e9ecef; border:2px solid #BEBEBE">
-            <div class="container-fluid p-0 m-0">
-                <a class="navbar-brand font-weight-bold" href="<?= Yii::$app->request->baseUrl ?>" style="color: #222; border-radius:2px;">
-                    <img src="<?= Yii::$app->request->baseUrl ?>/icons/logo-48.png" width="30">
-                    <?= Yii::t('app', 'MINI-RT') ?>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#w2-collapse" aria-controls="w2-collapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div id="w2-collapse" class="collapse navbar-collapse">
-                    <ul id="w3" class="navbar-nav ml-auto nav">
-                        <div class="row">
-                            <div class="col-md-12 border shadow-sm">
-                                <div class="btn-group rounded">
-                                    <button title="<?= Yii::t('app', 'Info') ?>" id="info" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
-                                        <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/info-25.png">
-                                    </button>
-                                    <button title="<?= Yii::t('app', 'Refresh') ?>" id="crefresh" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
-                                        <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/refresh-25.png">
-                                    </button>
-                                    <button title="<?= Yii::t('app', 'Trush bin') ?>" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?= Yii::$app->request->baseUrl ?>/icon/delete-25.png">
-                                    </button>
-                                    <button title="<?= Yii::t('app', 'Backup') ?>" id="backup" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/backup-25.png">
-                                    </button>
-                                    <button title="<?= Yii::t('app', 'Dashboard') ?>" id="index" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/dashboard-25.png">
-                                    </button>
-                                    <button type="button" class="btn btn-sm bg-light rounded-0" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/setting-25.png" width="25">
-                                    </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm bg-light rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/language-25.png">
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right border-0 shadow rounded">
-                                        <a class="dropdown-item" href="index.php?r=language/change&lang=lo"><img src="<?= Yii::$app->request->baseUrl ?>/icon/lao25.png"><?= Yii::t('app', 'Lao') ?></a>
-                                        <a class="dropdown-item" href="index.php?r=language/change&lang=en"><img src="<?= Yii::$app->request->baseUrl ?>/icon/usa25.png"><?= Yii::t('app', 'English') ?></a>
-                                    </div>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm bg-light rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/user-25.png">
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right border-0 shadow rounded">
-                                        <a class="dropdown-item" href="index.php?r=user/profile&id=<?= Yii::$app->user->id ?>"><img src="<?= Yii::$app->request->baseUrl ?>/icons/edit-user-24.png"> <?= Yii::t('app', 'Profile') ?></a>
-                                        <?=
-                                        Html::a('<img src="' . Yii::$app->request->baseUrl . '/icons/logout-24.png">' . Yii::t('app', 'Signout'), ['site/logout'], [
-                                            'class' => 'dropdown-item',
-                                            'data' => [
-                                                'method' => 'post'
-                                            ]
-                                        ]);
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <br><br><br>
-    <div class="p-4">
-        <main role="main">
-            <div class="container-fluid">
-                <div class="text-right">
-                    <?php Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
-                </div>
+
+        <div class="sidebar">
+            <a class="font-weight-bold" href="<?= Yii::$app->request->baseUrl ?>">
+                <img src="<?= Yii::$app->request->baseUrl ?>/icons/logo/logo1-96.png" width="60">
                 <?php
-                if (isset($this->params['breadcrumbs'])) {
-                ?>
-                    <!-- <div class="border-success p-0 shadow-lg text-secondary">
-                        <p class="text-right m-0">
-                            <b id="ctogle" class="text-right btn-outline-info border mb-1 mr-1 badge badge-default circle mr-0" style="cursor:pointer"><i class="fa fa-minus"></i></b>
-                            <b id="cback" class="text-right btn-outline-danger border mb-1 mr-1 badge badge-default circle ml-0" style="cursor:pointer"><i class="fa fa-times"></i></b>
-                        </p>
-                        <div id="mcontent" class="text-black-50 bg-white mt-0"> -->
-                    <?= Alert::widget() ?>
-                    <?= $content ?>
-                    <!-- </div>
-                    </div> -->
-                <?php
+                $restaurant = \backend\models\Restaurant::find()->where(['user_id' => \Yii::$app->user->id])->one();
+                if (is_object($restaurant)) {
+                    echo $restaurant->name;
                 } else {
-                    echo $content;
+                    echo Yii::t('app', 'MINI-RT');
                 }
                 ?>
+            </a>
+            <div class="row">
+                <div class="col-md-12 border shadow-sm">
+                    <hr class="p-0 m-0">
+                    <div class="btn-group rounded btn-block">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="users" type="button" class="btn btn-sm btn-block text-left">
+                            <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/users-25.png">
+                            <?= Yii::t('app', 'Users') ?>
+                        </button>
+                    </div>
+                    <hr class="p-0 m-0">
+                    <div class="btn-group rounded btn-block">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="tables" type="button" class="btn btn-sm btn-block text-left">
+                            <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/table-25.png">
+                            <?= Yii::t('app', 'Tables') ?>
+                        </button>
+                    </div>
+                    <hr class="p-0 m-0">
+                    <div class="btn-group rounded btn-block">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="restaurant" type="button" class="btn btn-sm btn-block text-left">
+                            <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/restaurant-25.png">
+                            <?= Yii::t('app', 'Restaurant') ?>
+                        </button>
+                    </div>
+                    <hr class="p-0 m-0">
+                    <div class="btn-group rounded btn-block">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="category" type="button" class="btn btn-sm btn-block text-left">
+                            <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/category-25.png">
+                            <?= Yii::t('app', 'Categories') ?>
+                        </button>
+                    </div>
+                    <hr class="p-0 m-0">
+                    <div class="btn-group rounded btn-block">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="menu" type="button" class="btn btn-sm btn-block text-left">
+                            <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/menu-25.png">
+                            <?= Yii::t('app', 'Menus') ?>
+                        </button>
+                    </div>
+                    <hr class="p-0 m-0">
+                    <div class="btn-group rounded btn-block">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="purchase" type="button" class="btn btn-sm btn-block text-left">
+                            <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/purchase-25.png">
+                            <?= Yii::t('app', 'Purchases') ?>
+                        </button>
+                    </div>
+                    <hr class="p-0 m-0">
+                    <div class="btn-group rounded btn-block">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="bill" type="button" class="btn btn-sm btn-block text-left">
+                            <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/bill-25.png">
+                            <?= Yii::t('app', 'Bills') ?>
+                        </button>
+                    </div>
+                    <hr class="p-0 m-0">
+                    <div class="btn-group rounded btn-block">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="benifit" type="button" class="btn btn-sm btn-block text-left">
+                            <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/benefit-25.png">
+                            <?= Yii::t('app', 'Benifit') ?>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </main>
-        <!-- <footer class="footer mt-auto py-3 text-muted fixed-bottom mt-5">
-            <div class="container">
-                <p class="float-left">&copy; <?php Html::encode(Yii::$app->name) ?> <?php date('Y') ?></p>
-                <p class="float-right"><?php Yii::powered() ?></p>
+        </div>
+    </header>
+    <div class="content" id="content">
+        <div class="row">
+            <div class="col-md-6">
+                <?php echo Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
             </div>
-        </footer> -->
-        <br><br><br><br>
+            <div class="col-md-6 text-right pt-1 pr-1">
+                <div class="btn-group rounded">
+                    <button title="<?= Yii::t('app', 'Dashboard') ?>" id="index" type="button" class="btn btn-sm bg-light" aria-haspopup="true" aria-expanded="false">
+                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/dashboard-25.png">
+                    </button>
+                </div>
+                <div class="btn-group rounded m-0">
+                    <button type="button" id="setting" class="btn btn-sm bg-light rounded-0" aria-haspopup="true" aria-expanded="false">
+                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/setting-25.png" width="25">
+                    </button>
+                </div>
+                <div class="btn-group m-0">
+                    <button type="button" class="btn btn-sm bg-light rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/language-25.png">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right border-0 shadow rounded">
+                        <a class="dropdown-item" href="index.php?r=language/change&lang=lo"><img src="<?= Yii::$app->request->baseUrl ?>/icon/lao25.png"><?= Yii::t('app', 'Lao') ?></a>
+                        <a class="dropdown-item" href="index.php?r=language/change&lang=en"><img src="<?= Yii::$app->request->baseUrl ?>/icon/usa25.png"><?= Yii::t('app', 'English') ?></a>
+                    </div>
+                </div>
+                <div class="btn-group m-0">
+                    <button type="button" class="btn btn-sm bg-light rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<?= Yii::$app->request->baseUrl ?>/icons/user-25.png">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right border-0 shadow rounded" style="width: 176px;">
+                        <a class="dropdown-item btn btn-sm" href="index.php?r=user/profile&id=<?= Yii::$app->user->id ?>">
+                            <img src="<?= Yii::$app->request->baseUrl ?>/icons/user-profile-25.png"> <?php if(Yii::$app->user->id){echo \Yii::$app->user->identity->username;}?>
+                        </a>
+                        <?=
+                        Html::a('<img src="' . Yii::$app->request->baseUrl . '/icons/logout-25.png">' . Yii::t('app', 'Signout'), ['site/logout'], [
+                            'class' => 'dropdown-item',
+                            'data' => [
+                                'method' => 'post'
+                            ]
+                        ]);
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <br><br>
+    <div class="content" id="content">
+        <div class="container-fluid">
+            <div class="text-right">
+                <?php Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
+            </div>
+            <?php
+            if (isset($this->params['breadcrumbs'])) {
+                echo Alert::widget();
+                echo $content;
+            } else {
+                echo $content;
+            }
+            ?>
+        </div>
+    </div>
+    <br><br><br>
     <?php $this->endBody() ?>
 </body>
 
 </html>
 <?php $this->endPage();
+
+?>

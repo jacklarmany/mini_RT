@@ -3,13 +3,14 @@
 namespace backend\controllers;
 
 use backend\models\Tables;
-use backend\models\TableSearch;
+use backend\models\TablesSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TableController implements the CRUD actions for Table model.
+ * TablesController implements the CRUD actions for Tables model.
  */
 class TablesController extends Controller
 {
@@ -32,15 +33,15 @@ class TablesController extends Controller
     }
 
     /**
-     * Lists all Table models.
+     * Lists all Tables models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new TableSearch();
+        $searchModel = new TablesSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
+        $dataProvider->pagination->pageSize=10;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -48,7 +49,7 @@ class TablesController extends Controller
     }
 
     /**
-     * Displays a single Table model.
+     * Displays a single Tables model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,7 +62,7 @@ class TablesController extends Controller
     }
 
     /**
-     * Creates a new Table model.
+     * Creates a new Tables model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
@@ -70,8 +71,11 @@ class TablesController extends Controller
         $model = new Tables();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->user_id = Yii::$app->user->id;
+                if($model->save()){
+                    return $this->redirect(['index']);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -83,7 +87,7 @@ class TablesController extends Controller
     }
 
     /**
-     * Updates an existing Table model.
+     * Updates an existing Tables model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -94,7 +98,7 @@ class TablesController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -103,7 +107,7 @@ class TablesController extends Controller
     }
 
     /**
-     * Deletes an existing Table model.
+     * Deletes an existing Tables model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,10 +121,10 @@ class TablesController extends Controller
     }
 
     /**
-     * Finds the Table model based on its primary key value.
+     * Finds the Tables model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Table the loaded model
+     * @return Tables the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
@@ -129,6 +133,6 @@ class TablesController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(\Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

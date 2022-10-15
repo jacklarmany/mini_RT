@@ -42,13 +42,15 @@ class SaleController extends Controller
         $searchModel = new SaleSearch();
         if (!empty(\Yii::$app->request->get('benifit'))) {
             $dataProvider = $searchModel->benifit($this->request->queryParams);
+            $dataProvider->pagination->pageSize=10;
             return $this->render('benifit', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
         } else {
 
-            $dataProvider = $searchModel->search($this->request->queryParams);
+            $dataProvider = $searchModel->search($this->request->queryParams); 
+            $dataProvider->pagination->pageSize=10;
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,

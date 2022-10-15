@@ -37,20 +37,50 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-sm-6 mx-auto p-2">
                 <div class="p-3 bg-white shadow-sm rounded">
                     <div class="card-body p-2 text-center">
-                        <h5 class="card-title m-0">Bill no : <?= $saleModelD->bill_no ?></h5>
+                        <div class="row">
+                            <div class="col-md-6 p-0 m-0 text-left pl-4">
+                                <h6 class="card-title m-0"><?= Yii::t('app', 'Date') ?>: <?= date("d-m-Y", strtotime($saleModelD->date)); ?></h6>
+                                <h6 class="card-title m-0"><?= Yii::t('app', 'Bill no') ?>: <?= $saleModelD->bill_no ?></h6>
+                            </div>
+                            <div class="col-md-6 p-0 m-0 text-right pr-4">
+                                <a class="btn btn-sm btn-outline-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><?= Yii::t('app', 'List of ithem') ?></a>
+                            </div>
+                        </div>
                         <hr class="m-1">
                         <div class="row">
                             <div class="col-md-6 m-0 p-0">
-                                <p class="card-text p-0 m-0">10-20-2022</p>
-                                <p class="card-text p-0 m-0">Table 5</p>
+                                <h4 class="card-text p-0 mt-2"><?= $saleModelD->table->name ?></h4>
                             </div>
                             <div class="col-md-6 m-0 p-0 text-success">
                                 <h4 class="mt-2">
                                     <?php
                                     $sumAmount = \backend\models\Sale::find()->where(['bill_no' => $bill_no])->sum('amount');
-                                    echo $sumAmount;
+                                    echo number_format($sumAmount, 2);
                                     ?>
                                 </h4>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body border">
+                                <table class="border" style="width:100%;">
+                                    <tr>
+                                        <th style="border:1px solid #ccc;">ຊື່</th>
+                                        <th style="border:1px solid #ccc;">ຈໍານວນ</th>
+                                        <th style="border:1px solid #ccc;">ລາຄາ</th>
+                                    </tr>
+                                    <?php
+                                    $selectSaleModel = \backend\models\Sale::find()->where(['bill_no' => $bill_no])->all();
+                                    foreach ($selectSaleModel as $sModelD) {
+                                    ?>
+                                        <tr style="border: 1px solid #ccc;">
+                                            <td style="border:1px solid #ccc;"><?= $sModelD->menu->name ?></td>
+                                            <td style="border:1px solid #ccc;"><?= $sModelD->qty ?></td>
+                                            <td style="border:1px solid #ccc;"><?= $sModelD->price ?></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -59,26 +89,57 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         }
     } else {
-        $saleModel = \backend\models\Sale::find()->groupBy('bill_no')->limit('2')->all();
+        $one = 2;
+        $saleModel = \backend\models\Sale::find()->groupBy('bill_no')->limit('2')->orderBy(['bill_no' => SORT_DESC])->all();
         foreach ($saleModel as $saleModelD) {
         ?>
             <div class="col-sm-6 mx-auto p-2">
                 <div class="p-3 bg-white shadow-sm rounded">
                     <div class="card-body p-2 text-center">
-                        <h5 class="card-title m-0">Bill no : <?= $saleModelD->bill_no ?></h5>
+                        <div class="row">
+                            <div class="col-md-6 p-0 m-0 text-left pl-4">
+                                <h6 class="card-title m-0"><?= Yii::t('app', 'Date') ?>: <?= date("d-m-Y", strtotime($saleModelD->date)); ?></h6>
+                                <h6 class="card-title m-0"><?= Yii::t('app', 'Bill no') ?>: <?= $saleModelD->bill_no ?></h6>
+                            </div>
+                            <div class="col-md-6 p-0 m-0 text-right pr-4">
+                                <a class="btn btn-sm btn-outline-primary" data-toggle="collapse" href="#collapseExample<?= $one ?>" role="button" aria-expanded="false" aria-controls="collapseExample"><?= Yii::t('app', 'List of ithem') ?></a>
+                            </div>
+                        </div>
                         <hr class="m-1">
                         <div class="row">
                             <div class="col-md-6 m-0 p-0">
-                                <p class="card-text p-0 m-0">10-20-2022</p>
-                                <p class="card-text p-0 m-0">Table 5</p>
+                                <h4 class="card-text p-0 mt-2"><?= $saleModelD->table->name ?></h4>
                             </div>
                             <div class="col-md-6 m-0 p-0 text-success">
                                 <h4 class="mt-2">
                                     <?php
                                     $sumAmount = \backend\models\Sale::find()->where(['bill_no' => $saleModelD->bill_no])->sum('amount');
-                                    echo $sumAmount;
+                                    echo number_format($sumAmount, 2);
                                     ?>
                                 </h4>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseExample<?= $one ?>">
+                            <div class="card card-body border">
+                                <table class="border" style="width:100%;">
+                                    <tr>
+                                        <th style="border:1px solid #ccc;">ຊື່</th>
+                                        <th style="border:1px solid #ccc;">ຈໍານວນ</th>
+                                        <th style="border:1px solid #ccc;">ລາຄາ</th>
+                                    </tr>
+                                    <?php
+                                    $selectSaleModel = \backend\models\Sale::find()->where(['bill_no' => $saleModelD->bill_no])->all();
+                                    foreach ($selectSaleModel as $sModelD) {
+                                    ?>
+                                        <tr style="border: 1px solid #ccc;">
+                                            <td style="border:1px solid #ccc;"><?= $sModelD->menu->name ?></td>
+                                            <td style="border:1px solid #ccc;"><?= $sModelD->qty ?></td>
+                                            <td style="border:1px solid #ccc;"><?= $sModelD->price ?></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </table>
                             </div>
                         </div>
                     </div>

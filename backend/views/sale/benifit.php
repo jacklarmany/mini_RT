@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <?php
                     // usage without model
-
                     echo \yii\jui\DatePicker::widget([
                         'name' => 'searchFDate',
                         'value' => Yii::$app->request->get('searchFDate'),

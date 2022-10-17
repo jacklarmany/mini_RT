@@ -339,6 +339,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 ->all();
                                         } else {
                                             $menuList = \backend\models\Menu::find()
+                                                ->limit('9')
                                                 ->all();
                                         }
                                         if (is_array($menuList)) {
@@ -347,7 +348,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <div class="col-md-3 bg-white p-1 border mr-2 ml-4 mt-2 shadow-sm">
                                                     <div class="product-grid rounded">
                                                         <div class="product-image">
-                                                            <a class="btn btn-primary image" data-toggle="modal" data-target="#myModal">
+                                                            <a class="btn btn-primary image">
                                                                 <img class="pic-1" src="<?= Yii::$app->request->baseUrl . "/images/" . $menuListD->photo ?>">
                                                                 <img class="pic-2" src="<?= Yii::$app->request->baseUrl . "/images/" . $menuListD->photo ?>">
                                                             </a>
@@ -385,13 +386,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </td>
                         <td style="width: 40%; vertical-align:top; background-color:#fcfcfc" class="p-3 shadow rounded">
-                            <a href="#" class="btn btn-sm btn-outline-primary" title="Check bill now" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a>
-                            <a href="index.php?r=menu/set-waiting&waiting=true" class="btn btn-sm btn-warning" title="Check bill later"><i class="fa fa-shopping-cart"></i><?=Yii::t('app','Confirm order')?></a>
+                            <a href="#" class="btn btn-sm btn-outline-primary" title="<?= Yii::t('app', 'List ordered') ?>" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-list"></i> <?= Yii::t('app', 'List order') ?></a>
+                            <a href="index.php?r=menu/set-waiting&waiting=true" class="btn btn-sm btn-success" title="<?= Yii::t('app', 'Confirm order') ?>"><i class="fa fa-check"></i> <?= Yii::t('app', 'Confirm') ?></a>
                             <?php
                             if (Yii::$app->session->get('table_id')) {
                                 $tablename = \backend\models\Tables::find()->where(['id' => Yii::$app->session->get('table_id')])->one();
                                 if (is_object($tablename)) {
-                                    echo '<a href="#" class="btn btn-sm btn-info">' . $tablename->name . '</a>';
+                                    echo '<a href="#" class="btn btn-sm btn-info"> <b>' . $tablename->name . '</b></a>';
                                 }
                             }
                             ?>
@@ -409,6 +410,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?php
                                     $prepareMenu = \backend\models\PrepareMenu::find()
                                         ->where(['checkbill' => 'No'])
+                                        ->orderBy(['id' => SORT_DESC])
                                         ->all();
                                     $serie = 1;
                                     foreach ($prepareMenu as $prepareMenuD) {
@@ -460,6 +462,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ->where(['checkbill' => 'Waiting'])
                         ->orWhere(['checkbill' => 'No'])
                         ->groupBy('table_id')
+                        ->orderBy(['id' => SORT_ASC])
                         ->all();
                     foreach ($menuModel as $menuD) {
                     ?>
@@ -485,7 +488,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <th class="text-center" width="45%">ມູນຄ່າ</th>
                                 </tr>
                                 <?php
-                                $menuModel2 = \backend\models\PrepareMenu::find()->where(['table_id' => $menuD->table_id, 'checkbill' => 'Waiting'])->all();
+                                $menuModel2 = \backend\models\PrepareMenu::find()
+                                    ->where(['table_id' => $menuD->table_id, 'checkbill' => 'Waiting'])
+                                    ->all();
                                 if ($menuModel2) {
                                     $count = 1;
                                     foreach ($menuModel2 as $menuD2) {
@@ -502,7 +507,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php
                                     }
                                 } else {
-                                    echo "<span class='text-danger'>".Yii::t('app', 'More ordering...') ."</span>";
+                                    echo "<span class='text-danger'>" . Yii::t('app', 'More ordering...') . "</span>";
                                 }
                                 ?>
                                 <tr>
@@ -522,28 +527,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                     ?>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--  Modal 2  show image-->
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <?php
-                // $photo = "ddd";
-                ?>
-                <img src="<?php //= Yii::$app->request->baseUrl . "/images/" . $photo 
-                            ?>" width="200">
             </div>
         </div>
     </div>

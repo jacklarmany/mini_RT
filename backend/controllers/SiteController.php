@@ -28,7 +28,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index','setting'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -97,6 +97,11 @@ class SiteController extends Controller
         }
     }
 
+
+
+    public function actionSetting(){
+        return $this->render('setting');
+    }
     /**
      * Logout action.
      *

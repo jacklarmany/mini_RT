@@ -1,0 +1,1 @@
+<a href="<?=Yii::$app->request->baseUrl?>/index.php?r=translatemanager"><?=Yii::t('app','Translatemanager')?></a>

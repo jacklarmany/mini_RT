@@ -20,38 +20,52 @@ use yii\web\UploadedFile;
  */
 class MenuController extends Controller
 {
+
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => [
+                            'logout',
+                            'index',
+                            'view',
+                            'update',
+                            'delete',
+                            'create',
+                            'sale-product',
+                            'select-table',
+                            'select-menu',
+                            'set-waiting',
+                            'order-more-menu',
+                            'print-bill',
+                            'delete-prepare-menu',
+                            'sell',
+                        ],
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
-                'access' => [
-                    'class' => AccessControl::className(),
-                    'rules' => [
-                        [
-                            'actions' => ['login', 'error', ''],
-                            'allow' => true,
-                        ],
-                        [
-                            // 'actions' => ['index','*'],
-                            'allow' => true,
-                            'roles' => ['@'],
-                        ],
-                    ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['POST'],
+                    'delete' => ['POST'],
                 ],
-
-            ]
-        );
+            ],
+        ];
     }
+
 
     /**
      * Lists all Menu models.
@@ -62,7 +76,7 @@ class MenuController extends Controller
     {
         $searchModel = new MenuSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $dataProvider->pagination->pageSize = 7;
+        $dataProvider->pagination->pageSize = 6;
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -263,6 +277,7 @@ class MenuController extends Controller
 
             $prepareMenu = \backend\models\PrepareMenu::find()
                 ->where(['checkbill' => 'No'])
+                ->orderBy(['id' => SORT_DESC])
                 ->all();
             $serie = 1;
             foreach ($prepareMenu as $prepareMenuD) {
@@ -382,6 +397,10 @@ class MenuController extends Controller
         }
     }
 
+    public function actionSell()
+    {
+        return $this->render('sell');
+    }
     /**
      * Deletes an existing Menu model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -410,11 +429,5 @@ class MenuController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-    }
-
-
-    public function actionSell()
-    {
-        return $this->render('sell');
     }
 }

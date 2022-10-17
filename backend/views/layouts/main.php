@@ -160,56 +160,56 @@ $this->title = Yii::t('app', 'Mini RT');
                 <div class="col-md-12 border shadow-sm">
                     <hr class="p-0 m-0">
                     <div class="btn-group rounded btn-block">
-                        <button title="<?= Yii::t('app', 'Info') ?>" id="users" type="button" class="btn btn-sm btn-block text-left">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="users" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/users-25.png">
                             <?= Yii::t('app', 'Users') ?>
                         </button>
                     </div>
                     <hr class="p-0 m-0">
                     <div class="btn-group rounded btn-block">
-                        <button title="<?= Yii::t('app', 'Info') ?>" id="tables" type="button" class="btn btn-sm btn-block text-left">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="tables" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/table-25.png">
                             <?= Yii::t('app', 'Tables') ?>
                         </button>
                     </div>
                     <hr class="p-0 m-0">
                     <div class="btn-group rounded btn-block">
-                        <button title="<?= Yii::t('app', 'Info') ?>" id="restaurant" type="button" class="btn btn-sm btn-block text-left">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="restaurant" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/restaurant-25.png">
                             <?= Yii::t('app', 'Restaurant') ?>
                         </button>
                     </div>
                     <hr class="p-0 m-0">
                     <div class="btn-group rounded btn-block">
-                        <button title="<?= Yii::t('app', 'Info') ?>" id="category" type="button" class="btn btn-sm btn-block text-left">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="category" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/category-25.png">
                             <?= Yii::t('app', 'Categories') ?>
                         </button>
                     </div>
                     <hr class="p-0 m-0">
                     <div class="btn-group rounded btn-block">
-                        <button title="<?= Yii::t('app', 'Info') ?>" id="menu" type="button" class="btn btn-sm btn-block text-left">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="menu" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/menu-25.png">
                             <?= Yii::t('app', 'Menus') ?>
                         </button>
                     </div>
                     <hr class="p-0 m-0">
                     <div class="btn-group rounded btn-block">
-                        <button title="<?= Yii::t('app', 'Info') ?>" id="purchase" type="button" class="btn btn-sm btn-block text-left">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="purchase" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/purchase-25.png">
                             <?= Yii::t('app', 'Purchases') ?>
                         </button>
                     </div>
                     <hr class="p-0 m-0">
                     <div class="btn-group rounded btn-block">
-                        <button title="<?= Yii::t('app', 'Info') ?>" id="bill" type="button" class="btn btn-sm btn-block text-left">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="bill" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/bill-25.png">
                             <?= Yii::t('app', 'Bills') ?>
                         </button>
                     </div>
                     <hr class="p-0 m-0">
                     <div class="btn-group rounded btn-block">
-                        <button title="<?= Yii::t('app', 'Info') ?>" id="benifit" type="button" class="btn btn-sm btn-block text-left">
+                        <button title="<?= Yii::t('app', 'Info') ?>" id="benifit" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/benefit-25.png">
                             <?= Yii::t('app', 'Benifit') ?>
                         </button>

@@ -9,13 +9,19 @@ $this->title = 'Create Tables';
 $this->params['breadcrumbs'][] = ['label' => 'Tables', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tables-index bg-white rounded shadow-sm">
-    <p class="pt-1 pr-2 m-0 text-right">
-        <a href="#" id="cback"><span><i class="fa fa-arrow-circle-left"></i></i></span></a>
-        <a href="index.php?r=site/index"><span><i class="text-danger fa fa-times-circle"></i></i></span></a>
-    </p>
-    <div class="tables-index bg-white rounded pr-3 pl-3 pb-3">
-        <h4 class="mt-0"><?= Html::encode($this->title) ?></h4>
+<div class="col-md-12 bg-light rounded p-0">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6 pl-2 m-0">
+                <h4><?= Html::encode($this->title) ?></h4>
+            </div>
+            <div class="col-md-6 pr-2 m-0 text-right">
+                <a href="#" id="cback"><span><i class="fa fa-arrow-circle-left"></i></i></span></a>
+                <a href="index.php?r=site/index"><span><i class="text-danger fa fa-times-circle"></i></i></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-white p-5">
         <?= $this->render('_form', [
             'model' => $model,
         ]) ?>

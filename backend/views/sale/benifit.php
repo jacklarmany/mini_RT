@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel backend\models\SaleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Sales');
+$this->title = Yii::t('app', 'Benefit');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <br>

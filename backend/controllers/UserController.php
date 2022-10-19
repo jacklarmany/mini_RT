@@ -35,6 +35,8 @@ class UserController extends Controller
                             'update',
                             'delete',
                             'create',
+                            'profile',
+                            'change-password',
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -140,10 +142,36 @@ class UserController extends Controller
         return $this->redirect(['index']);
     }
 
-
-
-    public function actionProfile(){
+    public function actionProfile()
+    {
         return $this->render('profile');
+    }
+
+    public function actionChangePassword()
+    {
+        $model = $this->findModel(\Yii::$app->user->id);
+        $oldPassword = $model->password_hash;
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            if ($model->validate()) {
+                echo $model->password_hash;
+                
+                $password = \Yii::$app->security->generatePasswordHash($model->password_hash);
+                if($password == $oldPassword){
+                    echo "goodd";
+                    die();
+                }
+                else{
+                    echo "no good";
+                    die();
+                }
+                // $model->password_hash = $password;
+                // $model->save();
+
+                \Yii::$app->session->setFlash('done', 'done');
+                return $this->redirect(['profile']);
+            }
+        }
+        return $this->render('change_password', ['model' => $model]);
     }
     /**
      * Finds the User model based on its primary key value.

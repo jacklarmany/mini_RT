@@ -11,7 +11,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\SaleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Sales');
+$this->title = Yii::t('app', 'Bills');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="col-md-12 mx-auto">

@@ -53,7 +53,7 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
         <div class="col-md-12">
-            <?= $form->field($model, 'description')->label(false) ?>
+            <?= $form->field($model, 'description')->label(Yii::t('app','Description')) ?>
         </div>
     </div>
     <div class="row">

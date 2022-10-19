@@ -11,6 +11,9 @@ use yii\helpers\ArrayHelper;
  */
 class User extends BaseUser
 {
+    public $oldPassword;
+    public $newPassword;
+    public $retypePassword;
 
     public function behaviors()
     {

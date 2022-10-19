@@ -17,9 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         padding: 10px;
     }
 </style>
-<div class="project-search pt-3 pb-3 pl-5 pr-5 shadow-sm rounded mb-3">
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-</div>
+
 <div class="col-md-12 mx-auto">
     <div class="rounded bg-white" style="border: 1px solid #ccc;">
         <div class="card-header">
@@ -33,11 +31,18 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="card-body bg-white">
-            <p class="text-right">
-                <?= Html::a('<span class="fa fa-file-pdf"></span> ' . Yii::t('app', 'Export to pdf'), ['create'], ['class' => 'btn btn-sm btn-success']) ?>
-                <?= Html::a('<span class="fa fa-print"></span> ' . Yii::t('app', 'Print'), ['create'], ['class' => 'btn btn-sm btn-success']) ?>
-                <?= Html::a('<span class="fa fa-plus-circle"></span> ' . Yii::t('app', 'Create purchase'), ['create'], ['class' => 'btn btn-sm btn-success']) ?>
-            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-right">
+                        <?= Html::a('<span class="fa fa-file-pdf"></span> ' . Yii::t('app', 'Export to pdf'), ['create'], ['class' => 'btn btn-sm btn-success']) ?>
+                        <?= Html::a('<span class="fa fa-print"></span> ' . Yii::t('app', 'Print'), ['create'], ['class' => 'btn btn-sm btn-success']) ?>
+                        <?= Html::a('<span class="fa fa-plus-circle"></span> ' . Yii::t('app', 'Create purchase'), ['create'], ['class' => 'btn btn-sm btn-success']) ?>
+                    </p>
+                </div>
+            </div>
 
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,

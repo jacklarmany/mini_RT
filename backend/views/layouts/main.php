@@ -211,7 +211,7 @@ $this->title = Yii::t('app', 'Mini RT');
                     <div class="btn-group rounded btn-block">
                         <button title="<?= Yii::t('app', 'Info') ?>" id="benifit" type="button" class="btn btn-sm btn-block text-left font-weight-bold">
                             <img width="26" src="<?= Yii::$app->request->baseUrl ?>/icons/benefit-25.png">
-                            <?= Yii::t('app', 'Benifit') ?>
+                            <?= Yii::t('app', 'Benefit') ?>
                         </button>
                     </div>
                 </div>
@@ -264,7 +264,8 @@ $this->title = Yii::t('app', 'Mini RT');
             </div>
         </div>
     </div>
-    <br><br>
+    <br>
+    <br>
     <div class="content" id="content">
         <div class="container-fluid">
             <div class="text-right">

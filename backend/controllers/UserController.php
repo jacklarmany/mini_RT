@@ -7,6 +7,7 @@ use backend\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -147,32 +148,23 @@ class UserController extends Controller
         return $this->render('profile');
     }
 
+
     public function actionChangePassword()
     {
         $model = $this->findModel(\Yii::$app->user->id);
-        $oldPassword = $model->password_hash;
-        if ($this->request->isPost && $model->load($this->request->post())) {
+        $model->setScenario('change-password');
+        if ($model->load(\Yii::$app->getRequest()->post())) {
             if ($model->validate()) {
-                echo $model->password_hash;
-                
-                $password = \Yii::$app->security->generatePasswordHash($model->password_hash);
-                if($password == $oldPassword){
-                    echo "goodd";
-                    die();
-                }
-                else{
-                    echo "no good";
-                    die();
-                }
-                // $model->password_hash = $password;
-                // $model->save();
-
-                \Yii::$app->session->setFlash('done', 'done');
-                return $this->redirect(['profile']);
+                $password = \Yii::$app->security->generatePasswordHash($model->newPassword);
+                $model->password_hash = $password;
+                $model->save();
+                \Yii::$app->session->setFlash('success', 'The password has been changed');
+                return $this->redirect(['change-password']);
             }
         }
         return $this->render('change_password', ['model' => $model]);
     }
+
     /**
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

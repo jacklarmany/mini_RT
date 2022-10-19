@@ -80,6 +80,10 @@ $this->title = Yii::t('app', 'Mini RT');
     <link rel="icon" type="image/x-icon" href="<?= Yii::$app->request->baseUrl ?>/icons/logo-48.png ?>">
     <?php $this->head() ?>
     <style>
+        body{
+            font-family: Saysettha OT !important;
+        }
+        
         .sidebar {
             margin: 0;
             padding: 0;
